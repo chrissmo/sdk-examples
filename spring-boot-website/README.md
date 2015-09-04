@@ -1,3 +1,5 @@
 # Spring Boot Website example
 
-To run: `java -jar spring-boot-website.jar`
+Change Smoope API settings: `resources/application.properties`
+
+Run: `java -jar spring-boot-website.jar`
