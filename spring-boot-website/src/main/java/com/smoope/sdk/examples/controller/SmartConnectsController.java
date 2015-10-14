@@ -24,8 +24,8 @@ public class SmartConnectsController {
     String index(Model model) {
         SmartConnectPagedList smartConnects = smoopeClient.getSmartConnectsList(1, 10);
 
-        model.addAttribute("smartConnects", smartConnects.getSmartConnects());
+        model.addAttribute("customers", smartConnects);
 
-        return "smart-connects";
+        return "customers";
     }
 }

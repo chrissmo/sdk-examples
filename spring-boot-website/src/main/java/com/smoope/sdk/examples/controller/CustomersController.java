@@ -1,7 +1,7 @@
 package com.smoope.sdk.examples.controller;
 
 import com.smoope.sdk.SmoopeClient;
-import com.smoope.sdk.objects.collections.CustomerIndexList;
+import com.smoope.sdk.objects.collections.UserPagedList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,7 +22,7 @@ public class CustomersController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     String index(Model model) {
-        CustomerIndexList customers = smoopeClient.getCustomersIndex();
+        UserPagedList customers = smoopeClient.getCustomersList(1, 10);
 
         model.addAttribute("customers", customers);
 

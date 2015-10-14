@@ -24,9 +24,9 @@
                 <li class="active" th:class="${#httpServletRequest.requestURI == '/customers/' ? 'active' : ''}">
                     <a href="#" th:href="@{/customers/}">Customers</a>
                 </li>
-                <li th:class="${#httpServletRequest.requestURI == '/business/' ? 'active' : ''}">
+                <!--li th:class="${#httpServletRequest.requestURI == '/business/' ? 'active' : ''}">
                     <a href="#" th:href="@{/business/}">Business</a>
-                </li>
+                </li-->
                 <li th:class="${#httpServletRequest.requestURI == '/staff/' ? 'active' : ''}">
                     <a href="#" th:href="@{/staff/}">Staff members</a>
                 </li>

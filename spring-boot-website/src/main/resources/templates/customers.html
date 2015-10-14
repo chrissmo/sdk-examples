@@ -17,28 +17,39 @@
     <![endif]-->
 </head>
 <body style="padding-top: 70px;">
-    <div th:replace="fragments/header :: header"></div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h1>Customers</h1>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-12">
-                <div class="btn-group" role="group" aria-label="...">
-                    <button th:each="customer : ${customers}" type="button" class="btn btn-primary">
-                        <span th:text="${customer.group}">#</span>
-                    </button>
-                </div>
-            </div>
+<div th:replace="fragments/header :: header"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Customers</h1>
         </div>
     </div>
-    <div th:replace="fragments/footer :: footer"></div>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}" ></script>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th class="col-md-4">Full name</th>
+            <th class="col-md-4">Email</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${customers}">
+            <td th:text="${user.firstName} + ' ' + ${user.lastName}">#</td>
+            <td th:text="${user.email}">#</td>
+            <td>
+                <div class="btn-group pull-right" role="group" aria-label="...">
+                    <button type="button" class="btn btn-primary">Edit</button>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}" ></script>
 </body>
 </html>

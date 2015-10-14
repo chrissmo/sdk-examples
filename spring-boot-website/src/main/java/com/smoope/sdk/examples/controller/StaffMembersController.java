@@ -24,7 +24,7 @@ public class StaffMembersController {
     String index(Model model) {
         UserPagedList users = smoopeClient.getStaffList(1, 10);
 
-        model.addAttribute("staff", users.getUsers());
+        model.addAttribute("staff", users);
 
         return "staff";
     }
