@@ -3,24 +3,36 @@ package com.smoope.sdk.examples.config;
 import com.smoope.sdk.SmoopeClient;
 import com.smoope.sdk.impl.SmoopeClientImpl;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.env.Environment;
+import org.springframework.context.annotation.Profile;
 
 @Configuration
 public class SmoopeConfiguration {
 
-    @Autowired
-    Environment env;
+    @Bean
+    @Profile("!local")
+    SmoopeClient smoopeClient(@Value("${smoope.api.auth.clientId}") String clientId,
+                              @Value("${smoope.api.auth.clientSecret}") String secret) {
+        return new SmoopeClientImpl(
+                clientId,
+                secret,
+                true
+        );
+    }
 
     @Bean
-    SmoopeClient smoopeClient() {
+    @Profile("local")
+    SmoopeClient localSmoopeClient(@Value("${smoope.api.auth.clientId}") String clientId,
+                                   @Value("${smoope.api.auth.clientSecret}") String secret,
+                                   @Value("${smoope.api.auth.url}") String authUrl,
+                                   @Value("${smoope.api.url}") String apiUrl) {
         return new SmoopeClientImpl(
-                env.getProperty("smoope.api.auth.clientId"),
-                env.getProperty("smoope.api.auth.clientSecret"),
-                env.getProperty("smoope.api.auth.url"),
-                env.getProperty("smoope.api.url")
+                clientId,
+                secret,
+                authUrl,
+                apiUrl
         );
     }
 }
